@@ -1,0 +1,59 @@
+-- Return the names of all salespeople that have an order with George
+
+SELECT SP.Name
+FROM Salesperson AS SP
+    JOIN Orders O on SP.SalespersonID = O.SalespersonID
+    JOIN Customer C on C.CustomerID = O.CustomerID
+WHERE C.Name = 'George'
+
+
+-- Return the names of all salespeople that do not have any order with George
+
+SELECT SP.Name
+FROM Salesperson AS SP
+    JOIN Orders O on SP.SalespersonID = O.SalespersonID
+    JOIN Customer C on C.CustomerID = O.CustomerID
+WHERE C.Name <> 'George'
+GROUP BY SP.Name
+
+
+-- Return the names of salespeople that have 2 or more orders
+
+SELECT SP.Name, O.SalespersonID
+FROM Salesperson AS SP
+         JOIN Orders O on SP.SalespersonID = O.SalespersonID
+GROUP BY SP.Name, O.SalespersonID
+HAVING COUNT(O.SalespersonID) > 1;
+
+
+-- Return the name of the salesperson with the 3rd highest salary
+
+WITH ResulRank AS
+         (SELECT SP.Salary,
+                 SP.Name,
+                 DENSE_RANK() OVER (ORDER BY SP.Salary DESC) AS DENSERANK
+          FROM Salesperson AS SP)
+SELECT ResulRank.Name
+FROM ResulRank
+WHERE DENSERANK = 3
+
+
+-- Create a new roll up table BigOrders(where columns are CustomerID, TotalOrderValue), and insert into that table customers whose total Amount across all orders is greater than 1000
+
+CREATE TABLE BigOrders AS
+SELECT BigOrders.CustomerID, BigOrders.TotalOrderValue
+FROM (SELECT C.CustomerID, SUM(O.CostOfUnit * O.NumberOfUnits) AS TotalOrderValue
+      FROM Customer AS C
+               JOIN Orders O on C.CustomerID = O.CustomerID
+      GROUP BY C.CustomerID) AS BigOrders
+WHERE BigOrders.TotalOrderValue > 1000
+
+
+-- Return the total Amount of orders for each month, ordered by year, then month (both in descending order)
+
+SELECT date_part('year', O.OrderDate)      AS OrderYear,
+       date_part('month', O.OrderDate)     AS OrderMonth,
+       SUM(O.CostOfUnit * O.NumberOfUnits) AS TotalOrderValue
+FROM Orders AS O
+GROUP BY OrderYear, OrderMonth
+ORDER BY OrderYear, OrderMonth DESC 

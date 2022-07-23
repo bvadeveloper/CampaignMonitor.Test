@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{A4DD3F04-EA99-4E70-8715-85FA8209C9E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CampaignMonitor.Test", "services\CampaignMonitor.Test\CampaignMonitor.Test.csproj", "{E5D9004F-E0FA-474C-8ABE-D74FD86015D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4E269AA6-FE32-4023-82AE-285A7389ED8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5D9004F-E0FA-474C-8ABE-D74FD86015D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5D9004F-E0FA-474C-8ABE-D74FD86015D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5D9004F-E0FA-474C-8ABE-D74FD86015D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5D9004F-E0FA-474C-8ABE-D74FD86015D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E5D9004F-E0FA-474C-8ABE-D74FD86015D2} = {A4DD3F04-EA99-4E70-8715-85FA8209C9E1}
+	EndGlobalSection
+EndGlobal
