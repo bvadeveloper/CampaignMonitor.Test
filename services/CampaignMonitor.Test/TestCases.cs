@@ -52,21 +52,33 @@ public static class TestCases
     /// should contain those integers which are most common in the input array.
     /// </summary>
     /// <returns></returns>
-    public static List<int> TestCase4(List<int> input)
+    public static IEnumerable<int> TestCase4(List<int> input)
     {
-        var hashSet = new HashSet<int>();
-        var output = new List<int>();
+        var dictionary = new Dictionary<int, int>();
+        var maxCount = 0;
 
-        foreach(var i in input)
+        foreach (var i in input)
         {
-            if (hashSet.Add(i))
+            if (dictionary.TryGetValue(i, out var value))
             {
-                continue;
-            }
+                var elementCount = ++value;
+                if (maxCount < elementCount)
+                {
+                    maxCount = elementCount;
+                }
 
-            output.Add(i);
+                dictionary[i] = elementCount;
+            }
+            else
+            {
+                dictionary.Add(i, 1);
+            }
         }
 
-        return output.Count == 0 ? hashSet.ToList() : output;
+        var result = dictionary
+            .Where(pair => pair.Value >= maxCount)
+            .Select(pair => pair.Key);
+
+        return result;
     }
 }
