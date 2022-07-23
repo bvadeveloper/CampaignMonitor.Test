@@ -8,15 +8,15 @@ namespace CampaignMonitor.Test;
 
 public class LinksCheckerHost : IHostedService
 {
-    private const int maxParallelism = 10;
-    private const string targetLink = "https://www.campaignmonitor.com/";
+    private const int MaxParallelism = 10;
+    private const string TargetLink = "https://www.campaignmonitor.com/";
 
-    private readonly IHttpClientFactory _clientFactory;
+    private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger _logger;
 
     public LinksCheckerHost(IHttpClientFactory clientFactory, ILogger<LinksCheckerHost> logger)
     {
-        _clientFactory = clientFactory;
+        _httpClientFactory = clientFactory;
         _logger = logger;
     }
 
@@ -36,7 +36,7 @@ public class LinksCheckerHost : IHostedService
         CancellationToken cancellationToken)
     {
         var downloaderBlock = new TransformBlock<string, (Uri, HttpStatusCode)>(Downloader,
-            new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = maxParallelism });
+            new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = MaxParallelism });
 
         var bufferBlock = new BufferBlock<(Uri, HttpStatusCode)>();
         downloaderBlock.LinkTo(bufferBlock);
@@ -59,7 +59,7 @@ public class LinksCheckerHost : IHostedService
 
     private async Task<(Uri, HttpStatusCode)> Downloader(string link)
     {
-        var httpClient = _clientFactory.CreateClient(); // reuse http clients from pool
+        var httpClient = _httpClientFactory.CreateClient(); // reuse http clients from pool
 
         var url = new Uri(link);
         var response = await httpClient.GetAsync(url);
@@ -72,7 +72,7 @@ public class LinksCheckerHost : IHostedService
         var links = new HashSet<string>(); // avoiding duplicates
 
         var web = new HtmlWeb();
-        var doc = await web.LoadFromWebAsync(targetLink, cancellationToken);
+        var doc = await web.LoadFromWebAsync(TargetLink, cancellationToken);
 
         // extracting all links
         foreach (var link in doc.DocumentNode.SelectNodes("//a[@href]"))

@@ -6,7 +6,7 @@ public class TestsCase1
 {
 
     [Test]
-    public void Check_if_input_null_as_result_true()
+    public void Input_null_result_true()
     {
         var isNullOrEmpty = TestCases.isNullOrEmpty(null);
         
@@ -14,7 +14,7 @@ public class TestsCase1
     }
     
     [Test]
-    public void Check_if_input_letter_a_as_result_false()
+    public void Input_single_letter_result_false()
     {
         var isNullOrEmpty = TestCases.isNullOrEmpty("a");
         
@@ -22,7 +22,7 @@ public class TestsCase1
     }
     
     [Test]
-    public void Check_if_input_empty_as_result_true()
+    public void Input_empty_result_true()
     {
         var isNullOrEmpty = TestCases.isNullOrEmpty("");
         
@@ -30,7 +30,7 @@ public class TestsCase1
     }
     
     [Test]
-    public void Check_if_input_correct_word_as_result_true()
+    public void Input_string_result_true()
     {
         var isNullOrEmpty = TestCases.isNullOrEmpty("null");
         
