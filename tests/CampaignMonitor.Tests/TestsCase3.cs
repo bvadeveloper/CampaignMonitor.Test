@@ -6,7 +6,7 @@ namespace CampaignMonitor.Tests;
 public class TestsCase3
 {
     [Test]
-    public void Triangle_area_with_lenght_3_4_5_is_6()
+    public void triangle_area_with_lenght_3_4_5_is_6()
     {
         const double area = 6;
         var result = TestCases.TestCase3(3, 4, 5);
@@ -15,13 +15,13 @@ public class TestsCase3
     }
 
     [Test]
-    public void Calculate_area_with_negative_values_throw_exception()
+    public void calculate_area_with_negative_values_throw_exception()
     {
         Assert.Throws<InvalidTriangleException>(() => TestCases.TestCase3(-3, 4, 5));
     }
     
     [Test]
-    public void Calculate_area_with_zero_values_throw_exception()
+    public void calculate_area_with_zero_values_throw_exception()
     {
         Assert.Throws<InvalidTriangleException>(() => TestCases.TestCase3(3, 0, 5));
     }
