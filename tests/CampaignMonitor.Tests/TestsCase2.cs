@@ -5,7 +5,7 @@ namespace CampaignMonitor.Tests;
 public class TestsCase2
 {
     [Test]
-    public void Positive_divisors_for_6o_return_correct_sequence()
+    public void positive_divisors_for_6o_return_correct_sequence()
     {
         var result = TestCases.TestCase2(60);
 
@@ -13,7 +13,7 @@ public class TestsCase2
     }
     
     [Test]
-    public void Positive_divisors_for_42_return_correct_sequence()
+    public void positive_divisors_for_42_return_correct_sequence()
     {
         var result = TestCases.TestCase2(42);
 
