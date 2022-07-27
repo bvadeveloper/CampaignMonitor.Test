@@ -6,7 +6,7 @@ public class TestsCase1
 {
 
     [Test]
-    public void Input_null_result_true()
+    public void input_null_result_true()
     {
         var isNullOrEmpty = TestCases.isNullOrEmpty(null);
         
@@ -14,7 +14,7 @@ public class TestsCase1
     }
     
     [Test]
-    public void Input_single_letter_result_false()
+    public void input_single_letter_result_false()
     {
         var isNullOrEmpty = TestCases.isNullOrEmpty("a");
         
@@ -22,7 +22,7 @@ public class TestsCase1
     }
     
     [Test]
-    public void Input_empty_result_true()
+    public void input_empty_string_result_true()
     {
         var isNullOrEmpty = TestCases.isNullOrEmpty("");
         
@@ -30,7 +30,7 @@ public class TestsCase1
     }
     
     [Test]
-    public void Input_string_result_true()
+    public void input_string_result_false()
     {
         var isNullOrEmpty = TestCases.isNullOrEmpty("null");
         
